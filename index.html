@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Venta de Propiedad Quillota</title>
+  <title>Venta de Propiedad XYZ</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     /* Variables */
@@ -134,24 +134,15 @@
     document.getElementById('next').addEventListener('click', () => showModal((current + 1) % images.length));
     modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('open'); });
 
-    // Success and Email Send Logic
+    // Success Modal Logic
     const successModal = document.getElementById('success-modal');
     document.querySelectorAll('form').forEach(form => {
       form.addEventListener('submit', e => {
         e.preventDefault();
-        // Build mailto URL with form data
-        const formData = new FormData(form);
-        const params = [];
-        formData.forEach((value, key) => {
-          params.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
-        });
-        // Use explicit mailto address to avoid form.action resolution issues
-        const mailtoLink = `mailto:casaquintaquillota@gmail.com?${params.join('&')}`;
-        // Open mail client
-        window.open(mailtoLink, '_self');
-        
-        // Show success modal
         successModal.classList.add('open');
       });
     });
     document.getElementById('success-close').addEventListener('click', () => successModal.classList.remove('open'));
+  </script>
+</body>
+</html>
