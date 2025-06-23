@@ -50,6 +50,16 @@
     .success-close{top:10px;right:10px}
     footer{background:var(--color-bg);text-align:center;padding:16px 0;margin-top:40px}
     .property-value { text-align:center; font-size:1.5rem; font-weight:700; color:var(--color-accent); margin:16px 0; }
+    /* Transición suave de opacidad */
+.main-image img {
+  transition: opacity 1s ease-in-out;
+}
+
+/* Clase para fade-out */
+.main-image img.fade-out {
+  opacity: 0;
+}
+
   </style>
 </head>
 <body>
@@ -238,4 +248,21 @@
     document.getElementById('success-close').addEventListener('click', () =>
       successModal.classList.remove('open')
     );
+    // --- INICIO Carrusel automático ---
+const slides = images;           // Usamos el mismo array de imágenes
+let slideIdx = 0;
+const mainImg = document.querySelector('.main-image img');
+
+setInterval(() => {
+  // Fade out
+  mainImg.classList.add('fade-out');
+  // Tras la transición, cambiamos la imagen y hacemos fade in
+  setTimeout(() => {
+    slideIdx = (slideIdx + 1) % slides.length;
+    mainImg.src = slides[slideIdx];
+    mainImg.classList.remove('fade-out');
+  }, 1000); // Debe coincidir con la duración de la transición CSS
+}, 5000);    // Cada 5 segundos avanza al siguiente slide
+// --- FIN Carrusel automático ---
+
   </script>
