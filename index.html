@@ -193,7 +193,7 @@
     </div>
   </div>
 
-  <script>
+    <script>
     const images = [
       'https://minisitios.ripley.cl/minisitios/qui/1.png',
       'https://minisitios.ripley.cl/minisitios/qui/2.png',
@@ -217,4 +217,25 @@
     );
     document.getElementById('close').addEventListener('click', () => modal.classList.remove('open'));
     document.getElementById('prev').addEventListener('click', () =>
-      showModal((current
+      showModal((current - 1 + images.length) % images.length)
+    );
+    document.getElementById('next').addEventListener('click', () =>
+      showModal((current + 1) % images.length)
+    );
+    // Cerrar modal al hacer clic fuera de la imagen
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+
+    // Éste es tu “success modal” que se abre tras enviar cualquier formulario
+    const successModal = document.getElementById('success-modal');
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        successModal.classList.add('open');
+      });
+    });
+    document.getElementById('success-close').addEventListener('click', () =>
+      successModal.classList.remove('open')
+    );
+  </script>
